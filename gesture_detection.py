@@ -1,5 +1,6 @@
 import cv2
 import math
+import numpy as np
 
 
 def get_defects(contour):
@@ -69,3 +70,11 @@ def predict_gesture(number_of_defects, area_ratio, contour_area):
         return 5
     else:
         return 6
+
+
+def guess_gestures(gesture_type, gesture_array, pos):
+    pos %= 13
+    gesture_array[pos] = gesture_type
+    gesture_list = gesture_array.tolist()
+    print(gesture_list)
+    return max(set(gesture_list), key = gesture_list.count)
