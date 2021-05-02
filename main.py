@@ -1,6 +1,7 @@
 import cv2
 import device_information
 import gesture_detection
+import keypad
 import numpy as np
 import interface
 import pre_processing
@@ -13,7 +14,7 @@ if __name__ == '__main__':
     lower_skin_bound, upper_skin_bound = np.array([0, 10, 60]), np.array([20, 150, 255])
     camera = cv2.VideoCapture(0)
 
-    prev_gestures = np.array([-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1])
+    prev_gestures = np.array([-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1])
     pos = 0
 
     while True:
@@ -35,11 +36,12 @@ if __name__ == '__main__':
         gesture_type = gesture_detection.guess_gestures(gesture_type, prev_gestures, pos)
         pos += 1
 
-        print('gesture: ', gesture_type)
+        # print('gesture: ', gesture_type)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-        time.sleep(0.2)
+        time.sleep(0.25)
+        # keypad.openApp()
 
     cv2.destroyAllWindows()
     camera.release()

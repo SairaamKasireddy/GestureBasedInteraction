@@ -56,6 +56,7 @@ def predict_gesture(number_of_defects, area_ratio, contour_area):
         if contour_area < 2000:
             return -1
         else:
+            print(area_ratio)
             if area_ratio < 12:
                 return 0
             else:
@@ -73,8 +74,8 @@ def predict_gesture(number_of_defects, area_ratio, contour_area):
 
 
 def guess_gestures(gesture_type, gesture_array, pos):
-    pos %= 13
+    pos %= 19
     gesture_array[pos] = gesture_type
     gesture_list = gesture_array.tolist()
-    print(gesture_list)
+    # print(gesture_list)
     return max(set(gesture_list), key = gesture_list.count)
