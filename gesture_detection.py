@@ -56,7 +56,6 @@ def predict_gesture(number_of_defects, area_ratio, contour_area):
         if contour_area < 2000:
             return -1
         else:
-            print(area_ratio)
             if area_ratio < 12:
                 return 0
             else:

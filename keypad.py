@@ -10,15 +10,15 @@ class Window(QMainWindow):
 
 	def __init__(self):
 		super().__init__()
-
+		print('cp11')
+		self.label = QLabel(self)
 		self.setWindowTitle("Python ")
 		self.setGeometry(100, 100, 380, 420)
 		self.UiComponents()
 		self.show()
 
 	def UiComponents(self):
-
-		self.label = QLabel(self)
+		print('cp12')
 		self.label.setGeometry(5, 5, 370, 70)
 		self.label.setWordWrap(True)
 		self.label.setStyleSheet("QLabel{ border : 4px solid black; background : white; }")
@@ -61,7 +61,7 @@ class Window(QMainWindow):
 		push_done = QPushButton("Done", self)
 		push_done.setGeometry(255, 335, 120, 80)
 		push_done.setStyleSheet("QPushButton::focus { background-color : red; }")
-
+		print('cp13')
 		push0.clicked.connect(self.action0)
 		push1.clicked.connect(self.action1)
 		push2.clicked.connect(self.action2)
@@ -74,6 +74,7 @@ class Window(QMainWindow):
 		push9.clicked.connect(self.action9)
 		push_done.clicked.connect(self.action_done)
 		push_del.clicked.connect(self.action_del)
+		print('cp14')
 
 	def action0(self):
 		text = self.label.text()
@@ -128,6 +129,7 @@ class Window(QMainWindow):
 
 
 def open_keypad():
+	print('cp5')
 	app = QApplication(sys.argv)
 	window = Window()
 	app.exec()
