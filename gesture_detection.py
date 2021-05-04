@@ -75,6 +75,12 @@ def predict_gesture(number_of_defects, area_ratio, contour_area):
 def guess_gestures(gesture_type, gesture_array, pos):
     pos %= 19
     gesture_array[pos] = gesture_type
-    gesture_list = gesture_array.tolist()
-    # print(gesture_list)
-    return max(set(gesture_list), key = gesture_list.count)
+    arr = [0]*10
+    for i in gesture_array:
+        arr[gesture_array[i]+1] += 1;
+        if(arr[gesture_array[i]+1]>12):
+            return i;
+    return -1
+    # gesture_list = gesture_array.tolist()
+    # # print(gesture_list)
+    # return max(set(gesture_list), key = gesture_list.count)

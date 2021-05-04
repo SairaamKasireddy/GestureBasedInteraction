@@ -1,3 +1,5 @@
+import time
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -13,7 +15,9 @@ class Window(QMainWindow):
 		print('cp11')
 		self.label = QLabel(self)
 		self.setWindowTitle("Python ")
-		self.setGeometry(100, 100, 380, 420)
+		self.setGeometry(50, 50, 380, 420)
+		self.raise_()
+		self.activateWindow()
 		self.UiComponents()
 		self.show()
 
@@ -61,7 +65,7 @@ class Window(QMainWindow):
 		push_done = QPushButton("Done", self)
 		push_done.setGeometry(255, 335, 120, 80)
 		push_done.setStyleSheet("QPushButton::focus { background-color : red; }")
-		print('cp13')
+
 		push0.clicked.connect(self.action0)
 		push1.clicked.connect(self.action1)
 		push2.clicked.connect(self.action2)
@@ -128,9 +132,19 @@ class Window(QMainWindow):
 		self.label.setText(text[:len(text)-1])
 
 
+window: Window
+
+
 def open_keypad():
 	print('cp5')
 	app = QApplication(sys.argv)
+	global window
 	window = Window()
-	app.exec()
+	app.exec_()
 	return keypad_value
+
+
+def close_keypad():
+	window.close()
+
+# open_keypad()
