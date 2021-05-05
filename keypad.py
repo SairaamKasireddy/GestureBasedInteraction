@@ -5,6 +5,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 import sys
+
+import actions
+
 keypad_value = ""
 
 
@@ -14,10 +17,9 @@ class Window(QMainWindow):
 		super().__init__()
 		print('cp11')
 		self.label = QLabel(self)
-		self.setWindowTitle("Python ")
+		self.setWindowTitle("Keypad ")
+		self.setWindowFlags(Qt.WindowStaysOnTopHint)
 		self.setGeometry(50, 50, 380, 420)
-		self.raise_()
-		self.activateWindow()
 		self.UiComponents()
 		self.show()
 
@@ -123,8 +125,8 @@ class Window(QMainWindow):
 	def action_done(self):
 		global keypad_value
 		keypad_value = self.label.text()
-		self.label.setText("")
 		self.close()
+		actions.type_number(keypad_value)
 
 	def action_del(self):
 		text = self.label.text()
@@ -144,7 +146,7 @@ def open_keypad():
 	return keypad_value
 
 
-def close_keypad():
-	window.close()
+# def close_keypad():
+# 	window.close()
 
 # open_keypad()

@@ -43,9 +43,8 @@ class Worker(QObject):
             gesture_type = gesture_detection.predict_gesture(number_of_defects, area_ratio, contour_area)
 
             interface.display_frame(area_of_interest, screen_width, screen_height)
-            gesture_type = gesture_detection.guess_gestures(gesture_type, prev_gestures, pos)
-            if gesture_type == 3:
-                print('gesture 3')
+            gesture_type, prev_gestures = gesture_detection.guess_gestures(gesture_type, prev_gestures, pos)
+            if gesture_type == 3 and (not show_keypad):
                 show_keypad = not show_keypad
             prev_timestamp = interface.show_gesture(gesture_type, screen_width, screen_height, prev_timestamp)
             prev_action_timestamp = actions.perform_action(gesture_type, prev_action_timestamp)
@@ -66,6 +65,7 @@ class Worker(QObject):
 
 show_keypad = False
 
+
 class Main():
 
     def __init__(self):
@@ -75,29 +75,23 @@ class Main():
         self.thread.started.connect(self.worker.run)
         self.worker.finished.connect(self.thread.quit)
         self.worker.finished.connect(self.worker.deleteLater)
-        # print('cp21')
         self.thread.finished.connect(self.thread.deleteLater)
 
     def main_fun(self):
-        print('cp3')
         self.thread.start()
-        print('cp212')
-        opened_atleast_once = False
+        is_open = False
+        global show_keypad
         while True:
             if show_keypad:
-                opened_atleast_once = True
-                pyautogui.click(150, 100)
-                key_val = keypad.open_keypad()
-                print(key_val)
-            elif opened_atleast_once:
-                keypad.close_keypad()
+                if not is_open:
+                    is_open = True
+                    show_keypad = False
+                    key_val = keypad.open_keypad()
+                    print(key_val)
+                    is_open = False
             time.sleep(1)
-        # return key_val
 
 
 if __name__ == '__main__':
     app = Main()
     app.main_fun()
-
-
-

@@ -12,7 +12,7 @@ def display_frame(frame, screen_width, screen_height):
     frame = cv2.resize(frame, (frame_width, frame_height))
     cv2.moveWindow('frame', x_pos, y_pos)
     cv2.imshow('frame', frame)
-    cv2.setWindowProperty('frame', cv2.WND_PROP_TOPMOST, 1)
+    # cv2.setWindowProperty('frame', cv2.WND_PROP_TOPMOST, 1)
 
 
 def display_mask(mask, screen_width, screen_height):
@@ -23,7 +23,7 @@ def display_mask(mask, screen_width, screen_height):
     mask = cv2.resize(mask, (mask_width, mask_height))
     cv2.moveWindow('mask', x_pos, y_pos)
     cv2.imshow('mask', mask)
-    cv2.setWindowProperty('mask', cv2.WND_PROP_TOPMOST, 1)
+    # cv2.setWindowProperty('mask', cv2.WND_PROP_TOPMOST, 1)
 
 
 def show_gesture(gesture_type, screen_width, screen_height, prev_timestamp):
@@ -43,5 +43,5 @@ def show_gesture(gesture_type, screen_width, screen_height, prev_timestamp):
     cv2.putText(bg, str(gesture_type), (text_x_pos-20, text_y_pos), font, 2, (0, 0, 255), 3, cv2.LINE_AA)
     cv2.moveWindow('Gesture', x_pos, y_pos)
     cv2.imshow('Gesture', bg)
-    cv2.setWindowProperty('Gesture', cv2.WND_PROP_TOPMOST, 1)
+    # cv2.setWindowProperty('Gesture', cv2.WND_PROP_TOPMOST, 1)
     return time.time()
