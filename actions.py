@@ -1,3 +1,4 @@
+import cv2
 import time
 import pyautogui
 
@@ -6,8 +7,14 @@ def mouse_click(x, y):
     pyautogui.click(x=x, y=y)
 
 
-def move_mouse(x, y):
-    pyautogui.moveTo(x, y)
+def move_mouse(contour, screen_width, screen_height, frame_width, frame_height):
+    M = cv2.moments(contour)
+    extTop1 = tuple(contour[contour[:, :, 1].argmin()][0])
+    # cX = int(M["m10"] / M["m00"])
+    # cY = int(M["m01"] / M["m00"])
+    cX = int(extTop1[0]*screen_width/frame_width)
+    cY = int(extTop1[1] *screen_height/frame_height)
+    pyautogui.moveTo(cX, cY)
 
 
 def shift_tab():

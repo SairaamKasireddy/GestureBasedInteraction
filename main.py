@@ -46,6 +46,8 @@ class Worker(QObject):
             gesture_type, prev_gestures = gesture_detection.guess_gestures(gesture_type, prev_gestures, pos)
             if gesture_type == 3 and (not show_keypad):
                 show_keypad = not show_keypad
+            elif gesture_type == 1:
+                actions.move_mouse(contour, screen_width, screen_height, x2-x1, y2-y1)
             prev_timestamp = interface.show_gesture(gesture_type, screen_width, screen_height, prev_timestamp)
             prev_action_timestamp = actions.perform_action(gesture_type, prev_action_timestamp)
             pos += 1
