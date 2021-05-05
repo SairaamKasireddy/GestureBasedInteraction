@@ -1,6 +1,5 @@
 import cv2
 import math
-import numpy as np
 
 
 def get_defects(contour):
@@ -81,6 +80,3 @@ def guess_gestures(gesture_type, gesture_array, pos):
         if arr[gesture_array[i] + 1] > 12:
             return i, gesture_array;
     return -1, gesture_array
-    # gesture_list = gesture_array.tolist()
-    # # print(gesture_list)
-    # return max(set(gesture_list), key = gesture_list.count)

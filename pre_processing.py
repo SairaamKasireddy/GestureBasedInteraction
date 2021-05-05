@@ -7,9 +7,9 @@ def get_area_of_interest(frame):
 
     frame_width, frame_height = frame.shape[1], frame.shape[0]
 
-    area_of_interest = frame[0:frame_height, 0:frame_width]
+    area_of_interest = frame[100:frame_height, 100:frame_width]
 
-    return area_of_interest, 0, 0, frame_width, frame_height
+    return area_of_interest, 100, 100, frame_width, frame_height
 
 
 def get_contour(area_of_interest, lower_skin_bound, upper_skin_bound, screen_width, screen_height):

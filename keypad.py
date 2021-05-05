@@ -15,7 +15,6 @@ class Window(QMainWindow):
 
 	def __init__(self):
 		super().__init__()
-		print('cp11')
 		self.label = QLabel(self)
 		self.setWindowTitle("Keypad ")
 		self.setWindowFlags(Qt.WindowStaysOnTopHint)
@@ -24,7 +23,6 @@ class Window(QMainWindow):
 		self.show()
 
 	def UiComponents(self):
-		print('cp12')
 		self.label.setGeometry(5, 5, 370, 70)
 		self.label.setWordWrap(True)
 		self.label.setStyleSheet("QLabel{ border : 4px solid black; background : white; }")
@@ -80,7 +78,6 @@ class Window(QMainWindow):
 		push9.clicked.connect(self.action9)
 		push_done.clicked.connect(self.action_done)
 		push_del.clicked.connect(self.action_del)
-		print('cp14')
 
 	def action0(self):
 		text = self.label.text()
@@ -134,19 +131,11 @@ class Window(QMainWindow):
 		self.label.setText(text[:len(text)-1])
 
 
-window: Window
-
-
 def open_keypad():
-	print('cp5')
 	app = QApplication(sys.argv)
-	global window
 	window = Window()
 	app.exec_()
 	return keypad_value
 
-
-# def close_keypad():
-# 	window.close()
 
 # open_keypad()

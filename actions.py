@@ -7,13 +7,15 @@ def mouse_click(x, y):
     pyautogui.click(x=x, y=y)
 
 
+def mouse_click():
+    pyautogui.click()
+
+
 def move_mouse(contour, screen_width, screen_height, frame_width, frame_height):
     M = cv2.moments(contour)
     extTop1 = tuple(contour[contour[:, :, 1].argmin()][0])
-    # cX = int(M["m10"] / M["m00"])
-    # cY = int(M["m01"] / M["m00"])
     cX = int(extTop1[0]*screen_width/frame_width)
-    cY = int(extTop1[1] *screen_height/frame_height)
+    cY = int((extTop1[1]+50) *screen_height/frame_height)
     pyautogui.moveTo(cX, cY)
 
 
@@ -44,19 +46,15 @@ def volume_up():
 
 
 def perform_action(action_type, prev_timestamp):
-    if (time.time() - prev_timestamp) < 2.0:
+    if (time.time() - prev_timestamp) < 3.0:
         return prev_timestamp
     if action_type == "":
         print('nothing happened')
     action = int(action_type)
-    if action == 0:
-        volume_down()
-    elif action == 1:
-        pass
-    elif action == 2:
+    if action == 2:
         spacebar()
     elif action == 3:
-        volume_up()
+        mouse_click()
     elif action == 4:
         shift_tab()
     elif action == 5:
