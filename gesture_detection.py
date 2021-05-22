@@ -38,7 +38,7 @@ def count_defects(defects, approx, area_of_interest):
         d = (2 * ar) / a
         angle = math.acos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c)) * 57
 
-        if angle <= 90 and d > 20:
+        if angle <= 80 and d > 15:
             number_of_defects += 1
             cv2.circle(area_of_interest, far, 3, [255, 0, 0], -1)
 
@@ -55,7 +55,7 @@ def predict_gesture(number_of_defects, area_ratio, contour_area):
         if contour_area < 2000:
             return -1
         else:
-            if area_ratio < 12:
+            if area_ratio < 8:
                 return 0
             else:
                 return 1

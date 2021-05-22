@@ -4,7 +4,7 @@ import pyautogui
 import actions
 import device_information
 import gesture_detection
-import help
+
 import keypad
 import numpy as np
 import interface
@@ -27,7 +27,6 @@ class Worker(QObject):
             prev_timestamp = time.time()
             prev_action_timestamp = time.time()
             global show_keypad
-            help.open_help(screen_width, screen_height)
             # self.thread.start()
             # keypad.open_keypad()
 
@@ -84,7 +83,7 @@ class Main():
         self.thread.finished.connect(self.thread.deleteLater)
 
     def main_fun(self):
-        keypad_timestamp = time.time()
+        keypad_timestamp = time.time()-60
         try:
             self.thread.start()
             is_open = False
@@ -97,7 +96,8 @@ class Main():
                         key_val = keypad.open_keypad()
                         print(key_val)
                         is_open = False
-                time.sleep(60)
+                        time.sleep(60)
+                time.sleep(10)
         except:
             pass
 
